@@ -65,11 +65,11 @@ AppDataSource.initialize()
     const role = new Role();
     role.role = "volunteer";
 
-    const userRepository = AppDataSource.getRepository(User);
     const roleRepository = AppDataSource.getRepository(Role);
+    const userRepository = AppDataSource.getRepository(User);
 
+    const newRole = await roleRepository.save(role);
     await userRepository.save(user);
-    await roleRepository.save(role);
 
     console.log(`Relationship between ${user} and ${role}`);
   })
