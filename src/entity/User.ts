@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  ManyToOne,
+  JoinColumn,
+} from "typeorm";
 import { Role } from "./Role";
 
 @Entity()
@@ -22,6 +29,7 @@ export class User {
   @Column()
   isAdmin: boolean;
 
-  @OneToOne(() => Role, (role) => role.role)
-  role: Role;
+  @OneToOne(() => Role, (role) => role.id)
+  @JoinColumn()
+  roleId: Role;
 }
